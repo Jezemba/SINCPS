@@ -1,0 +1,137 @@
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.title, .publication-title, .subtitle, .navbar-item, .button {
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+}
+
+.publication-title {
+  margin-bottom: 0.75rem;
+}
+
+.publication-authors {
+  margin-top: 0.5rem;
+}
+
+.publication-authors .author-block {
+  margin-right: 0.25rem;
+}
+
+.publication-authors a {
+  color: #3273dc;
+}
+
+.affiliations {
+  margin-top: 0.5rem;
+  color: #4a4a4a;
+}
+
+.venue {
+  margin-top: 0.75rem;
+  font-weight: 600;
+  color: #b41e1e;
+}
+
+.publication-links {
+  margin-top: 1.25rem;
+}
+
+.publication-links .button {
+  background-color: #363636;
+  color: #fff;
+}
+
+.publication-links .button:hover {
+  background-color: #b41e1e;
+}
+
+.teaser img {
+  border: 1px solid #ededed;
+  border-radius: 10px;
+  box-shadow: 0 6px 24px -10px rgba(0,0,0,0.18);
+}
+
+.section {
+  padding: 2.5rem 1.5rem;
+}
+
+.content p {
+  line-height: 1.7;
+}
+
+/* 4-step pipeline */
+.pipeline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.pipeline .step {
+  background-color: #0b2161;
+  color: #fff;
+  border-radius: 10px;
+  padding: 1.1rem 1.1rem;
+  flex: 1 1 180px;
+  max-width: 230px;
+  text-align: left;
+}
+
+.pipeline .step .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #0b2161;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.pipeline .step h4 {
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.pipeline .step p {
+  color: #d7def0;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.pipeline .arrow {
+  display: flex;
+  align-items: center;
+  color: #b41e1e;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .pipeline .arrow { transform: rotate(90deg); }
+}
+
+.bibtex-box {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+}
+
+.bibtex-box pre {
+  background: transparent;
+  padding: 0;
+  color: #363636;
+}
+
+.figure-caption {
+  color: #7a7a7a;
+  font-style: italic;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}

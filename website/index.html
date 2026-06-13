@@ -1,13 +1,212 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SINCPS — Semantic-aware Implicit Neural Compression for Physics Simulations</title>
-    <meta name="description" content="SINCPS compresses terabyte-scale physics simulations into compact, queryable neural representations using wafer-scale computing." />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SINCPS: Semantic-aware Implicit Neural Compression for Physics Simulations</title>
+  <meta name="description" content="SINCPS compresses terabyte-scale physics simulations into compact, queryable neural representations using wafer-scale computing.">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://www.jessicaezemba.com">
+        <span class="icon"><i class="fas fa-home"></i></span>
+      </a>
+      <a class="navbar-item" href="https://github.com/Jezemba/SINCPS">Code</a>
+      <a class="navbar-item" href="./static/Poster_Bern_5.pdf">Poster</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">SINCPS: Semantic-aware Implicit Neural Compression for Physics Simulations</h1>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="https://www.jessicaezemba.com">Jessica Ezemba</a><sup>1</sup>,</span>
+            <span class="author-block">James Afful<sup>2</sup>,</span>
+            <span class="author-block">Mei-Yu Wang<sup>3</sup></span>
+          </div>
+
+          <div class="is-size-6 affiliations">
+            <sup>1</sup>Carnegie Mellon University &nbsp; <sup>2</sup>Iowa State University &nbsp; <sup>3</sup>Pittsburgh Supercomputing Center
+          </div>
+
+          <div class="is-size-6 venue">
+            PASC26 &nbsp;&middot;&nbsp; ACM Student Research Competition &nbsp;&middot;&nbsp; University of Bern, Switzerland &nbsp;&middot;&nbsp; June 2026
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="./static/Poster_Bern_5.pdf" class="external-link button is-normal is-rounded">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Poster (PDF)</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/Jezemba/SINCPS" class="external-link button is-normal is-rounded">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/PolymathicAI/the_well" class="external-link button is-normal is-rounded">
+                  <span class="icon"><i class="fas fa-database"></i></span>
+                  <span>The Well Benchmark</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="has-text-centered">
+      <a href="./static/Poster_Bern_5.pdf">
+        <img src="./static/images/poster_full.png" alt="SINCPS poster" style="max-width: 70%; height: auto;">
+      </a>
+      <p class="figure-caption">The SINCPS conference poster. Click to open the full PDF.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Abstract -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>Machine learning surrogates and data-driven scientific discovery need efficient access to simulation data, yet physics simulations generate terabyte-scale datasets. Traditional compression either achieves insufficient ratios or corrupts physics-critical features like conservation laws. Implicit neural representations offer a promising alternative, but adoption has been limited by lengthy training times and dataset-specific fitting.</p>
+          <p>We present SINCPS, which uses wafer-scale computing to train one model per dataset in 2 to 3 hours. Across 22 datasets from The Well benchmark, it achieves 150x to 25,000x compression. Turbulent flows and 3D data remain challenging, but about half of the datasets exceed 20 dB PSNR, enabling large simulation archives to enter discovery workflows.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Approach -->
+<section class="section" style="background-color: #fafafa;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 has-text-centered">Approach</h2>
+
+        <div class="pipeline mb-5">
+          <div class="step"><span class="num">1</span><h4>Simulation Data</h4><p>Generate coordinate-value pairs from simulations.</p></div>
+          <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+          <div class="step"><span class="num">2</span><h4>Train Neural Function</h4><p>Fit an implicit neural function to the data.</p></div>
+          <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+          <div class="step"><span class="num">3</span><h4>Store Neural Representation</h4><p>Keep the compact neural representation.</p></div>
+          <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+          <div class="step"><span class="num">4</span><h4>Query at Arbitrary Resolution</h4><p>Decode the field at any resolution.</p></div>
+        </div>
+
+        <div class="content has-text-justified">
+          <p>The pipeline turns HDF5 simulation files into coordinate-value pairs. Static fields are stored as float16, and dynamic fields are network-encoded with z-score normalization to balance disparate physical magnitudes. Multiple coordinate systems are supported, including Cartesian, spherical, and log-spherical grids.</p>
+          <p>The model is a SIREN network with Fourier positional encoding: input coordinates pass through 10 levels of Fourier features with frequencies from pi to 512 pi, then four hidden layers of 1024 units with sinusoidal activations, mapping spatiotemporal coordinates to physical field values. The network has about 4.2 million parameters, and each saved model is 37.6 MB. Training uses MSE loss with Adam, 50,000 steps, and batch size 16,384, on the Cerebras CS-3.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Results -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 has-text-centered">Results</h2>
+        <div class="content">
+          <ul>
+            <li>150x to 25,000x compression across 22 datasets from The Well benchmark.</li>
+            <li>Each model compresses to 37.6 MB, from initial sizes of 5.4 GB to 1.9 TB.</li>
+            <li>Training is 2 to 3 hours per dataset on the Cerebras CS-3, compared with 6.6 hours on an NVIDIA H100 GPU and 11.2 hours on an AMD EPYC 7702P CPU.</li>
+            <li>Smooth fields such as astrophysics reach about 32 dB PSNR; turbulent and 3D fields are harder at about 13 dB.</li>
+            <li>About half of the datasets exceed 20 dB PSNR.</li>
+          </ul>
+        </div>
+        <div class="has-text-centered mt-5">
+          <img src="./static/images/results.png" alt="Reconstruction results across physics domains" style="max-width: 60%; height: auto;">
+          <p class="figure-caption">Reconstructed fields across physics domains: ground truth, SINCPS reconstruction, and absolute error.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Validation -->
+<section class="section" style="background-color: #fafafa;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered">Physics Validation</h2>
+        <div class="content has-text-justified">
+          <p>Validation goes beyond pixel-level accuracy to check that compression preserves physics. It uses two tiers:</p>
+          <ul>
+            <li>Conservation laws (primary), held to a strict tolerance.</li>
+            <li>Constitutive relations (secondary).</li>
+            <li>Statistical measures including relative L2, spectral, and gradient errors.</li>
+          </ul>
+          <p>Each domain has dedicated conservation checks, for example wave speed and energy for acoustic scattering, mass and momentum and energy for compressible Euler flows, divergence of B and magnetic energy for magnetohydrodynamics, and incompressibility and heat flux for Rayleigh-Benard convection.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BibTeX -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">BibTeX</h2>
+    <div class="bibtex-box">
+<pre>@inproceedings{ezemba2026sincps,
+  title     = {Semantic-aware Implicit Neural Compression for Physics Simulations},
+  author    = {Ezemba, Jessica and Afful, James and Wang, Mei-Yu},
+  booktitle = {Platform for Advanced Scientific Computing (PASC),
+               ACM Student Research Competition},
+  year      = {2026}
+}</pre>
+    </div>
+  </div>
+</section>
+
+<!-- Acknowledgments + Footer -->
+<footer class="footer">
+  <div class="container is-max-desktop">
+    <div class="content has-text-centered">
+      <p style="font-size: 0.95rem; color: #4a4a4a;">
+        This work was supported by the ByteBoost cybertraining program (NSF awards 2320990, 2320991, 2320992),
+        the Neocortex project (NSF 2005597), the ACES platform (NSF 2112356), and the Ookami cluster (NSF 1927880),
+        with technical support from Cerebras for the CS-3.
+      </p>
+      <p style="font-size: 0.85rem; color: #7a7a7a; margin-top: 1rem;">
+        This website is licensed under a
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+        It borrows the layout of the <a href="https://nerfies.github.io">Nerfies</a> project page.
+      </p>
+    </div>
+  </div>
+</footer>
+
+</body>
 </html>
