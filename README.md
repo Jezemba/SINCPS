@@ -114,7 +114,7 @@ Models were trained on the **Cerebras CS-3** wafer-scale engine:
 - **Loss**: MSE
 - **Optimizer**: Adam
 
-Per-dataset training configurations are in the `configs/` directory. Models were trained with the Cerebras ModelZoo trainer on the CS-3; the training framework itself is external to this repository.
+The full training code and a replication guide are in the [`training/`](training/) directory (the Cerebras Model Zoo `sincs` package plus per-dataset configs). Note that the models are trained with the Cerebras stack on a CS-3, so the Cerebras software and CS-3 / CSX access are required for an identical run; see [`training/README.md`](training/README.md) for setup, dataset prep, and the CPU/GPU fallback.
 
 ## Citation
 

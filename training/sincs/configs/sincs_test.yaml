@@ -1,0 +1,58 @@
+# SINCS Optimized Config for CSX Compilation Testing
+# Uses fake data for quick compilation verification
+
+trainer:
+  init:
+    seed: 42
+    model_dir: sincs_csx_model
+    backend:
+      backend_type: CSX
+      cluster_config:
+        num_workers_per_csx: 1
+    model:
+      name: sincs
+      input_dim: 3
+      output_dim: 1
+      hidden_dim: 128
+      num_hidden_layers: 3
+      omega_0: 30.0
+      omega_hidden: 30.0
+      use_fourier_encoding: true
+      encoding_levels: 6
+      dropout: 0.0
+      loss_type: mse
+      to_float16: false
+    optimizer:
+      Adam:
+        lr: 0.001
+        betas: [0.9, 0.999]
+        eps: 1.0e-08
+        weight_decay: 0.0
+    schedulers:
+    - ConstantLR:
+        learning_rate: 0.001
+    precision:
+      enabled: false
+    loop:
+      max_steps: 100
+    checkpoint:
+      steps: 50
+    logging:
+      log_steps: 10
+  fit:
+    train_dataloader:
+      data_processor: SINCSDataProcessor
+      data_dir: /cra-1272/PhysicsAlchemists/datasets
+      dataset_name: acoustic_scattering_discontinuous
+      trajectory_idx: 0
+      num_timesteps: 5
+      batch_size: 4096
+      num_samples_per_epoch: 50000
+      shuffle: true
+      shuffle_seed: 42
+      num_workers: 0
+      prefetch_factor: 2
+      persistent_workers: false
+      drop_last: true
+      use_fake_data: true
+      fake_data_shape: [64, 64, 10]
