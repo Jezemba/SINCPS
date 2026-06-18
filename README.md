@@ -2,16 +2,22 @@
 
 Machine learning surrogates and data-driven scientific discovery require efficient access to simulation data, yet physics simulations generate terabyte-scale datasets. Traditional compression either achieves insufficient ratios or corrupts physics-critical features like conservation laws.
 
-**SINCPS** leverages wafer-scale computing to train implicit neural representations in 2-3 hours each. Across 22 datasets from [The Well benchmark](https://github.com/PolymathicAI/the_well), we achieve **150x to 25,000x compression** while preserving domain-specific conservation laws.
+**SINCPS** leverages wafer-scale computing to train implicit neural representations in 2-3 hours each. Across 22 datasets from [The Well benchmark](https://github.com/PolymathicAI/the_well), we achieve **150x to 25,000x compression**, evaluated with standard reconstruction metrics (PSNR and L2 error). Physics-aware validation of domain-specific conservation laws is ongoing.
 
 ## Key Results
 
-| Physics Domain | Compression Ratio | PSNR (dB) | L2 Error |
-|---------------|-------------------|-----------|----------|
-| Astrophysics | 4,213x | 32 dB | 3.4% |
-| Compressible Flow | 25,348x | 21 dB | 5.5% |
-| Wave Phenomena | 6,759x | 27 dB | 3.1% |
-| Turbulence | 152x | 14 dB | 13.6% |
+Per-domain aggregates across the 22 datasets:
+
+| Physics Domain | Compression Ratio | PSNR (dB) | L2 Error (%) |
+|---------------|-------------------|-----------|--------------|
+| Compressible Flows | 25,348x | 14.7 | 16.2 |
+| Turbulence | 2,394x | 13.7 | 13.6 |
+| Astrophysics | 1,767x | 32.3 | 3.4 |
+| Wave Phenomena | 1,750x | 21.5 | 8.9 |
+| Fluid Dynamics | 1,483x | 21.4 | 5.8 |
+| Magnetohydrodynamics | 220x | 14.9 | 9.7 |
+| Geophysical | 182x | 14.1 | 13.7 |
+| Reaction-Diffusion | 152x | 23.9 | 5.8 |
 
 All 22 models compress to **37.6 MB each** from original sizes of 5.4 GB to 1.9 TB.
 
@@ -108,16 +114,17 @@ Models were trained on the **Cerebras CS-3** wafer-scale engine:
 - **Loss**: MSE
 - **Optimizer**: Adam
 
-Training code is available in the `training/` directory for reference.
+Per-dataset training configurations are in the `configs/` directory. Models were trained with the Cerebras ModelZoo trainer on the CS-3; the training framework itself is external to this repository.
 
 ## Citation
 
 ```bibtex
-@inproceedings{sincps2025,
-  title={SINCPS: Semantic-aware Implicit Neural Compression for Physics Simulations},
-  author={...},
-  booktitle={...},
-  year={2025}
+@inproceedings{ezemba2026sincps,
+  title     = {Semantic-aware Implicit Neural Compression for Physics Simulations},
+  author    = {Ezemba, Jessica and Afful, James and Wang, Mei-Yu},
+  booktitle = {Platform for Advanced Scientific Computing (PASC),
+               ACM Student Research Competition},
+  year      = {2026}
 }
 ```
 
